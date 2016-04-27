@@ -6,7 +6,25 @@
 
 package com.makersupv.makers;
 
+import com.parse.*;
 
-public class Image {
-    //TODO
+@ParseClassName("Image")
+public class Image extends ParseObject{
+
+    public Image(){
+        //Default constructor... Not used, just for Parse
+    }
+
+    public String getObjectIdParse(){
+        return getString("objectId");
+    }
+
+    public ParseFile getParseImage(){
+        return getParseFile("image");
+    }
+
+    public void setParseImage(ParseFile file){
+        put("image", file);
+    }
+
 }

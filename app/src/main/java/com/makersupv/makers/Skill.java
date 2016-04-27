@@ -6,47 +6,32 @@
 
 package com.makersupv.makers;
 
-import com.parse.ParseObject;
+import com.parse.*;
 
+@ParseClassName("Skill")
+public class Skill extends ParseObject{
 
-public class Skill {
-
-    private String objectId;
-    private String skillName;
-    private Image icon;
-
-    public Skill(ParseObject skillName, Image icon) {
-        //this.objectId = objectId;
-        this.skillName = skillName.getString("name");
-        this.icon = icon;
+    public Skill() {
+        //Default constructor... Not used, just for Parse
     }
 
-
-    //This constructor will be used when retrieving data from Realm instead of parse
-    public Skill(String skillName, Image icon) {
-        //this.objectId = objectId;
-        this.skillName = skillName;
-        this.icon = icon;
+    public String getObjectIdParse(){
+        return getString("objectId");
     }
-
-
-    public String getObjectId() {return objectId;}
-
-    public void setObjectId(String objectId) {this.objectId = objectId;}
 
     public String getSkillName() {
-        return skillName;
+        return getString("name");
     }
 
     public void setSkillName(String skillName) {
-        this.skillName = skillName;
+        put("name", skillName);
     }
 
-    public Image getIcon() {
-        return icon;
+    public ParseFile getIcon() {
+        return getParseFile("icon");
     }
 
-    public void setIcon(Image icon) {
-        this.icon = icon;
+    public void setIcon(ParseFile image) {
+        put("icon", image);
     }
 }

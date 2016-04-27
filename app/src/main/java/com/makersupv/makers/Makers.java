@@ -9,6 +9,7 @@ package com.makersupv.makers;
 import android.app.Application;
 
 import com.parse.Parse;
+import com.parse.ParseObject;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -29,6 +30,15 @@ public class Makers extends Application {
                 .server("https://parseapi.back4app.com/")
                 .build()
         );
+
+        //Initialize all the Parse Classes
+        ParseObject.registerSubclass(User.class);
+        ParseObject.registerSubclass(Skill.class);
+        ParseObject.registerSubclass(Project.class);
+        ParseObject.registerSubclass(Image.class);
+
+        //TODO
+        //ParseObject.registerSubclass(UserSkill.class);
 
 
         //Set up Realm configuration

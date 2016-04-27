@@ -6,170 +6,126 @@
 
 package com.makersupv.makers;
 
-import com.parse.ParseObject;
+import com.parse.*;
 
 import java.util.Date;
 
+@ParseClassName("User")
+public class User extends ParseObject{
 
-public class User {
-
-    private String objectId;
-    private Image avatar;
-    private String userName;
-    private String name;
-    private String surname;
-    private String email;
-    private String password;
-    private Boolean isActive;
-    private String interests;
-    private String degree;
-    private Date birthDate;
-    private Date lastAccess;
-    private Date registerDate;
-    private UserSkill[] skills;
-
-    public User(Image avatar, ParseObject parseObject, UserSkill[] skills) {
-        this.avatar = avatar;
-        this.userName = parseObject.getString("username");
-        this.name = parseObject.getString("name");
-        this.surname = parseObject.getString("surname");
-        this.email = parseObject.getString("email");
-        this.password = parseObject.getString("password");
-        this.isActive = parseObject.getBoolean("active");
-        this.interests = parseObject.getString("interests");
-        this.degree = parseObject.getString("degree");
-        this.birthDate = parseObject.getDate("birthdate");
-        this.lastAccess = parseObject.getDate("last_access");
-        this.registerDate = parseObject.getDate("register_date");
-        this.skills = skills;
+    public User() {
+        //Default constructor... Not used, just for Parse
     }
 
-    public User(Image avatar, String userName, String name, String surname, String email, String password, Boolean isActive,
-                String interests, String degree, Date birthDate, Date lastAccess, Date registerDate, UserSkill[] skills) {
-        this.avatar = avatar;
-        this.userName = userName;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.password = password;
-        this.isActive = isActive;
-        this.interests = interests;
-        this.degree = degree;
-        this.birthDate = birthDate;
-        this.lastAccess = lastAccess;
-        this.registerDate = registerDate;
-        this.skills = skills;
+    public String getObjectIdParse(){
+        return getString("objectId");
     }
 
-    public String getObjectId() {
-        return objectId;
+    public ParseFile getAvatar() {
+        return getParseFile("avatar");
     }
 
-    public void setObjectId(String objectId) {
-        this.objectId = objectId;
-    }
-
-    public Image getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(Image avatar) {
-        this.avatar = avatar;
+    public void setAvatar(ParseFile image) {
+        put("avatar", image);
     }
 
     public String getUserName() {
-        return userName;
+        return getString("username");
     }
 
     public void setUserName(String userName) {
-        this.userName = userName;
+        put("username", userName);
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return getString("name");
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String name) {
+        put("name", name);
     }
 
     public String getSurname() {
-        return surname;
+        return getString("surname");
     }
 
     public void setSurname(String surname) {
-        this.surname = surname;
+        put("surname", surname);
     }
 
     public String getEmail() {
-        return email;
+        return getString("email");
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        put("email", email);
     }
 
     public String getPassword() {
-        return password;
+        return getString("password");
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        put("password", password);
     }
 
     public Boolean getActive() {
-        return isActive;
+        return getBoolean("active");
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        put("active", active);
     }
 
     public String getInterests() {
-        return interests;
+        return getString("interests");
     }
 
     public void setInterests(String interests) {
-        this.interests = interests;
+        put("interests", interests);
     }
 
     public String getDegree() {
-        return degree;
+        return getString("degree");
     }
 
     public void setDegree(String degree) {
-        this.degree = degree;
+        put("degree", degree);
     }
 
     public Date getBirthDate() {
-        return birthDate;
+        return getDate("birthdate");
     }
 
     public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+        put("birthdate", birthDate);
     }
 
     public Date getLastAccess() {
-        return lastAccess;
+        return getDate("last_access");
     }
 
     public void setLastAccess(Date lastAccess) {
-        this.lastAccess = lastAccess;
+        put("last_access", lastAccess);
     }
 
     public Date getRegisterDate() {
-        return registerDate;
+        return getDate("createdAt");
     }
 
     public void setRegisterDate(Date registerDate) {
-        this.registerDate = registerDate;
+        put("createdAt", registerDate);
     }
 
-    public UserSkill[] getSkills() {
-        return skills;
-    }
+    //TODO UserSkill
+    /**
 
-    public void setSkills(UserSkill[] skills) {
-        this.skills = skills;
-    }
+     public  getSkills() {
+     return skills;
+     }
+
+     public void setSkills(UserSkill[] skills) {
+     this.skills = skills;
+     }
+     */
 }
