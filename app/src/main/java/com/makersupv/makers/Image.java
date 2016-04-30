@@ -23,6 +23,10 @@ public class Image extends ParseObject{
         return getParseFile("image");
     }
 
+    public byte[] getParseByte(){
+        return getBytes("image");
+    }
+
     public void setParseImage(ParseFile file){
         put("image", file);
     }

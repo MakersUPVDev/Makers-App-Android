@@ -65,5 +65,4 @@ public class TestVerProyectos extends AppCompatActivity {
             arrayAdapter.add(list.get(i).get("name").toString());
         }
     }
-
 }

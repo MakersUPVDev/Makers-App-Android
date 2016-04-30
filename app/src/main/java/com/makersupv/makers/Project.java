@@ -10,8 +10,10 @@ import com.parse.*;
 
 import org.json.JSONArray;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @ParseClassName("Project")
 public class Project extends ParseObject {
@@ -56,22 +58,12 @@ public class Project extends ParseObject {
         put("duration", duration);
     }
 
-    //TODO
-    //public User[] getMembers() {}
-
-    //TODO
-    //public void setMembers(User[] members) {this.members = members;}
-
     public int getMembersLimit() {
         return getInt("members_limit");
     }
 
     public void setMembersLimit(int membersLimit) {
         put("members_limit", membersLimit);
-    }
-
-    public JSONArray getImages() {
-        return getJSONArray("images");
     }
 
     public void setImages(Image[] images) {
