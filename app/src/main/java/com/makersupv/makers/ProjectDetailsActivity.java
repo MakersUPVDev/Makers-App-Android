@@ -91,7 +91,6 @@ public class ProjectDetailsActivity extends AppCompatActivity {
                 ((ParseFile) parseSkills.get(1).get("icon")).cancel();
                 skill2.setParseFile((ParseFile) parseSkills.get(1).get("icon"));
                 skill2.loadInBackground();
-
             }
             else {
                 skill2.setImageResource(android.R.color.transparent);
