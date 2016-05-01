@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Makers</string>
+    <string name="email">Mail</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="username">Nombre de usuario:</string>
+    <string name="password">Contraseña:</string>
 </resources>
