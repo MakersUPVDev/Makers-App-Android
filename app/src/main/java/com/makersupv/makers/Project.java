@@ -6,17 +6,17 @@
 
 package com.makersupv.makers;
 
-import com.parse.*;
+import com.parse.ParseClassName;
+import com.parse.ParseObject;
 
 import org.json.JSONArray;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 @ParseClassName("Project")
-public class Project extends ParseObject {
+public class Project extends ParseObject implements Serializable {
 
     public Project() {
         //Default constructor... Not used, just for Parse

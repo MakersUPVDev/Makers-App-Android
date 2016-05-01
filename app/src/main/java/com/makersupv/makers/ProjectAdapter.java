@@ -9,16 +9,12 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.parse.Parse;
 import com.parse.ParseFile;
 import com.parse.ParseImageView;
 import com.parse.ParseQuery;
 import com.parse.ParseQueryAdapter;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -128,4 +124,8 @@ public class ProjectAdapter extends ParseQueryAdapter<Project> {
         return position;
     }
 
+    @Override
+    public Project getItem(int index) {
+        return super.getItem(index);
+    }
 }
