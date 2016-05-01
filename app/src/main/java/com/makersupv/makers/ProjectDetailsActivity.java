@@ -4,6 +4,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.parse.GetCallback;
@@ -58,7 +59,7 @@ public class ProjectDetailsActivity extends AppCompatActivity {
                     fetchImages();
                     fetchSkills();
                 } else {
-                    // something went wrong
+                    Log.d("Error", e.getMessage());
                 }
             }
         });
