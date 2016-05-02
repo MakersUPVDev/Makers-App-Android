@@ -16,8 +16,8 @@ import io.realm.RealmConfiguration;
 
 public class Makers extends Application {
 
-    private static String APPLICATION_ID = "MGj3CWWXtBenD6OhI4IkKIN8DcfFD8GprJmZKnw5";
-    private static String CLIENT_KEY = "03ZOM40IKIQrXVbQupsq77kreK0WcTRZcu2SvrDd";
+    private static String APPLICATION_ID = "theAppId";
+    private static String CLIENT_KEY = "s0m3th1ngth4t1sh4rdt0gu3ss";
 
     @Override
     public void onCreate(){
@@ -27,7 +27,7 @@ public class Makers extends Application {
         Parse.initialize(new Parse.Configuration.Builder(this)
                 .applicationId(APPLICATION_ID)
                 .clientKey(CLIENT_KEY)
-                .server("https://parseapi.back4app.com/")
+                .server("http://1f0c7cd3e0.url-de-test.ws/parse/")
                 .build()
         );
 
