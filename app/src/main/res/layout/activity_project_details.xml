@@ -22,7 +22,7 @@
             app:expandedTitleMarginStart="16dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <com.parse.ParseImageView
+            <ImageView
                 android:id="@+id/projectImageView"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
@@ -48,58 +48,132 @@
         android:clipToPadding="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <android.support.v7.widget.CardView
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:cardElevation="6dp"
-            app:cardUseCompatPadding="true">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_marginTop="16dp"
+                app:cardElevation="6dp"
+                app:cardUseCompatPadding="true">
 
-                <TextView
-                    android:id="@+id/description"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                    android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_margin="16dp">
+                    <TextView
+                        android:id="@+id/projectDescriptionHolder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/description"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                <com.parse.ParseImageView
-                    android:id="@+id/skill1"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop" />
-
-                <com.parse.ParseImageView
-                    android:id="@+id/skill2"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop" />
-
-                <com.parse.ParseImageView
-                    android:id="@+id/skill3"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop" />
+                    <TextView
+                        android:id="@+id/projectDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-        </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardElevation="6dp"
+                app:cardUseCompatPadding="true">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/projectSkillsHolder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/skills"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/skillsDetailRecyclerView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_margin="10dp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardElevation="6dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/projectImagesHolder"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/images"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/imagesDetailRecyclerView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="200dp"
+                        android:layout_margin="10dp"/>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardElevation="6dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/comments"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:text="@string/comments"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
     <android.support.design.widget.FloatingActionButton

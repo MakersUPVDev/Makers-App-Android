@@ -4,9 +4,11 @@
  *
  */
 
-package com.makersupv.makers;
+package com.makersupv.makers.Models;
 
 //TODO
+
+import com.makersupv.makers.Models.Skill;
 
 public class UserSkill{
 

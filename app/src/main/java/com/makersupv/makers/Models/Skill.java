@@ -4,7 +4,7 @@
  *
  */
 
-package com.makersupv.makers;
+package com.makersupv.makers.Models;
 
 import com.parse.*;
 

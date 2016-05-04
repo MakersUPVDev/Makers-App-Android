@@ -1,12 +1,11 @@
 /*
- * Created by Alejandro Valenzuela Navarro
+ * Created by Iván José Martín García
  * Copyright © 2016 makers. All rights reserved.
- *
  */
 
 
 
-package com.makersupv.makers;
+package com.makersupv.makers.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.makersupv.makers.R;
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 

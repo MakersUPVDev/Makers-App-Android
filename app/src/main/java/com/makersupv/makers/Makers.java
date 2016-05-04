@@ -8,6 +8,10 @@ package com.makersupv.makers;
 
 import android.app.Application;
 
+import com.makersupv.makers.Models.Image;
+import com.makersupv.makers.Models.Project;
+import com.makersupv.makers.Models.Skill;
+import com.makersupv.makers.Models.User;
 import com.parse.Parse;
 import com.parse.ParseObject;
 

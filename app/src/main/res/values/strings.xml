@@ -4,4 +4,9 @@
     <string name="login">Iniciar sesión</string>
     <string name="username">Nombre de usuario:</string>
     <string name="password">Contraseña:</string>
+    <string name="loading_content">Cargando</string>
+    <string name="description">Descripción:</string>
+    <string name="skills">Skills:</string>
+    <string name="images">Imágenes:</string>
+    <string name="comments">Comentarios</string>
 </resources>
