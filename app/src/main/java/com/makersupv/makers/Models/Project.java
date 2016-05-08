@@ -6,16 +6,8 @@
 
 package com.makersupv.makers.Models;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
-import com.makersupv.makers.Models.Image;
-import com.makersupv.makers.Models.Skill;
-import com.makersupv.makers.Models.User;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
-
-import org.json.JSONArray;
 
 import java.io.Serializable;
 import java.util.Arrays;
