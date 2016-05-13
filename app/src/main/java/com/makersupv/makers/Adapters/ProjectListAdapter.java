@@ -6,6 +6,10 @@
 package com.makersupv.makers.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Looper;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,10 +17,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.makersupv.makers.Activities.ProjectDetailsActivity;
 import com.makersupv.makers.Models.Image;
 import com.makersupv.makers.Models.Project;
 import com.makersupv.makers.Models.Skill;
 import com.makersupv.makers.R;
+import com.makersupv.makers.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,12 +81,36 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
 
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.projectName.setText(projects.get(position).getProjectName());
         holder.projectDescription.setText(projects.get(position).getDescription());
 
         images.clear();
         skills.clear();
+
+        if(listOfImages != null && listOfImages.size() != 0 && listOfImages.get(position) != null){
+            images.addAll(listOfImages.get(position));
+        }
+
+        if(listOfSkills != null && listOfSkills.size() != 0 && listOfSkills.get(position) != null){
+            skills.addAll(listOfSkills.get(position));
+        }
+
+        if(images.size() == 0){
+            holder.recyclerViewImage.setVisibility(View.GONE);
+        }
+
+        else {
+            holder.recyclerViewImage.setVisibility(View.VISIBLE);
+        }
+
+        if(skills.size() == 0){
+            holder.recyclerViewSkill.setVisibility(View.GONE);
+        }
+        else {
+            holder.recyclerViewSkill.setVisibility(View.VISIBLE);
+        }
+
 
         ProjectImagesAdapter imageAdapter = new ProjectImagesAdapter(context, images);
 
@@ -90,31 +120,11 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
         RecyclerView.LayoutManager layoutManagerSkill = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
 
         holder.recyclerViewSkill.setLayoutManager(layoutManagerSkill);
+        holder.recyclerViewImage.setLayoutManager(layoutManagerImage);
+
+        holder.recyclerViewImage.setAdapter(imageAdapter);
         holder.recyclerViewSkill.setAdapter(skillAdapter);
 
-        holder.recyclerViewImage.setLayoutManager(layoutManagerImage);
-        holder.recyclerViewImage.setAdapter(imageAdapter);
-
-        imageAdapter.notifyDataSetChanged();
-        skillAdapter.notifyDataSetChanged();
-
-
-        if(listOfImages != null && listOfImages.size() != 0){
-            images.addAll(listOfImages.get(position));
-        }
-
-        if(listOfSkills != null && listOfSkills.size() != 0 && listOfSkills.get(position) != null){
-            skills.addAll(listOfSkills.get(position));
-        }
-
-        imageAdapter.notifyDataSetChanged();
-
-        if (skills.size() == 0){
-            holder.recyclerViewSkill.setVisibility(View.GONE);
-        }else {
-            holder.recyclerViewSkill.setVisibility(View.VISIBLE);
-            skillAdapter.notifyDataSetChanged();
-        }
     }
 
     @Override

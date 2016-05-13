@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.makersupv.makers.Adapters.ProjectImagesAdapter;
 import com.makersupv.makers.Adapters.SkillsAdapter;
 import com.makersupv.makers.DataManager.DataManager;
@@ -23,7 +24,6 @@ import com.makersupv.makers.Models.Image;
 import com.makersupv.makers.Models.Project;
 import com.makersupv.makers.Models.Skill;
 import com.makersupv.makers.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,24 +86,43 @@ public class ProjectDetailsActivity extends AppCompatActivity {
 
             @Override
             public void doneProject(final Project project) {
-                if((List<Image>) project.get("images") != null)
-                    parseImages.addAll((List<Image>) project.get("images"));
-                else
+
+                parseSkills.clear();
+                parseImages.clear();
+
+                List<Image> images = (List<Image>) project.get("images");
+                List<Skill> skills = (List<Skill>) project.get("skills");
+
+                if(project.get("images") != null && images.size()!= 0) {
+                    parseImages.addAll(images);
+                }
+                else{
                     imagesRecyclerView.setVisibility(View.GONE);
-                if ((List<Skill>) project.get("skills") != null)
-                    parseSkills.addAll((List<Skill>) project.get("skills"));
-                else
+                }
+
+                if (project.get("skills") != null && skills.size() != 0 ) {
+                    parseSkills.addAll(skills);
+                }
+                else{
                     skillsRecyclerView.setVisibility(View.GONE);
+                }
+
+                projectImagesAdapter.notifyDataSetChanged();
+                skillsAdapter.notifyDataSetChanged();
 
                 Handler mainHandler = new Handler(context.getMainLooper());
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
                         if(parseImages != null && parseImages.size() > 0){
-                            Picasso.with(context).load(parseImages.get(0).getParseImage().getUrl()).into(projectImageView);
+                            Glide.with(context)
+                                    .load(parseImages.get(0).getParseImage().getUrl())
+                                    .placeholder(R.mipmap.makers_logo)
+                                    .into(projectImageView);
                         } else {
                             projectImageView.setImageResource(R.mipmap.makers_logo);
                         }
+
                         collapsingToolbarLayout.setTitle(project.getProjectName());
                         projectDescriptionTextView.setText(project.getDescription());
 

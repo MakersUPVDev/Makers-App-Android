@@ -12,9 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.makersupv.makers.Models.Skill;
 import com.makersupv.makers.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -52,8 +52,10 @@ public class SkillsAdapter extends RecyclerView.Adapter<SkillsAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         if (listOfSkills != null && listOfSkills.size() != 0){
-            if(listOfSkills.size() > position)
-                Picasso.with(holder.skillImage.getContext()).load(listOfSkills.get(position).getParseFile("icon").getUrl()).into(holder.skillImage);
+            Glide.with(holder.skillImage.getContext())
+                    .load(listOfSkills.get(position).getParseFile("icon").getUrl())
+                    .placeholder(R.mipmap.makers_logo)
+                    .into(holder.skillImage);
         }
     }
 

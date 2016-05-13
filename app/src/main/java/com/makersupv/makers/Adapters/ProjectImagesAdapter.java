@@ -12,9 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.makersupv.makers.Models.Image;
 import com.makersupv.makers.R;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -46,18 +47,18 @@ public class ProjectImagesAdapter extends RecyclerView.Adapter<ProjectImagesAdap
 
         viewHolder = new ViewHolder(view);
 
-        viewHolder.projectImageView.setTag(viewHolder);
-
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if(listOfImages != null && listOfImages.size() > position && listOfImages.size() != 0){
-                Picasso.with(holder.projectImageView.getContext()).load(listOfImages.get(position).getParseImage().getUrl()).into(holder.projectImageView);
-        }
-        else {
-            holder.projectImageView.setImageResource(R.mipmap.makers_logo);
+        if(listOfImages != null && listOfImages.size() != 0 && listOfImages.get(position).getParseImage() != null){
+            Glide.with(holder.projectImageView.getContext())
+                    .load(listOfImages.get(position).getParseImage().getUrl())
+                    .placeholder(R.mipmap.makers_logo)
+                    .into(holder.projectImageView);
+        } else {
+            holder.projectImageView.setImageDrawable(null);
         }
     }
 

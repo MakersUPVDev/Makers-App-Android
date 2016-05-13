@@ -21,8 +21,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.LoginActivity" />
-        <activity android:name=".Activities.ProjectDetailsActivity"
-            android:theme="@style/AppThemeNoActionBar"></activity>
+        <activity
+            android:name=".Activities.ProjectDetailsActivity"
+            android:theme="@style/AppThemeNoActionBar" />
+        <activity android:name=".Activities.CreateProjectActivity"></activity>
     </application>
 
 </manifest>

@@ -5,8 +5,14 @@
     <string name="username">Nombre de usuario:</string>
     <string name="password">Contraseña:</string>
     <string name="loading_content">Cargando</string>
-    <string name="description">Descripción:</string>
-    <string name="skills">Skills:</string>
-    <string name="images">Imágenes:</string>
+    <string name="project_name">Nombre</string>
+    <string name="description">Descripción</string>
+    <string name="skills">Skills</string>
+    <string name="images">Imágenes</string>
     <string name="comments">Comentarios</string>
+    <string name="title_activity_create_project">Crear Proyecto</string>
+    <string name="pick_image">Selecciona una imagen</string>
+    <string name="delete_image">¿Eliminar imagen?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
 </resources>

@@ -5,16 +5,26 @@
 
 package com.makersupv.makers.DataManager;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.Log;
+import android.view.View;
 
+import com.makersupv.makers.Adapters.UploadImagesAdapter;
 import com.makersupv.makers.Models.Image;
 import com.makersupv.makers.Models.Project;
 import com.makersupv.makers.Models.Skill;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
+import com.parse.ParseFile;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +44,10 @@ public class DataManager {
 
     public interface ProjectCallback {
         void doneProject(Project project);
+    }
+
+    public interface UploadPhotosCallback{
+        void donePhotos();
     }
 
     public void getAllProjects(final ProjectsCallback callback){
@@ -83,6 +97,50 @@ public class DataManager {
                 }
             }
         });
+    }
+
+    //Use this method to convert a List<Bitmap> into a List<Image>
+    public List<Image> createImageList(List<Bitmap> bitmaps){
+        List<Image> parseImages = new ArrayList<>();
+        for (Bitmap x : bitmaps){
+            Image image = new Image();
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            x.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            ParseFile parseFile = new ParseFile(stream.toByteArray());
+            image.setParseImage(parseFile);
+            parseImages.add(image);
+        }
+        return parseImages;
+    }
+
+    public void uploadImage(Context context, final UploadImagesAdapter.Item item, Uri imageUri) throws IOException {
+        InputStream iStream =   context.getContentResolver().openInputStream(imageUri);
+        byte[] inputData = DataManager.getInstance().getBytes(iStream);
+        ParseFile parseFile = new ParseFile(inputData);
+        Image image = new Image();
+        image.setParseImage(parseFile);
+        image.saveInBackground(new SaveCallback() {
+            public void done(ParseException e) {
+                if (e == null) {
+                    item.progressBar.setVisibility(View.GONE);
+                    item.projectUploadImageView.setVisibility(View.VISIBLE);
+                } else {
+
+                }
+            }
+        });
+    }
+
+    public byte[] getBytes(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+        int bufferSize = 1024;
+        byte[] buffer = new byte[bufferSize];
+
+        int len;
+        while ((len = inputStream.read(buffer)) != -1) {
+            byteBuffer.write(buffer, 0, len);
+        }
+        return byteBuffer.toByteArray();
     }
 
 }

@@ -23,7 +23,6 @@ import com.makersupv.makers.Models.Skill;
 import com.makersupv.makers.R;
 import com.makersupv.makers.RecyclerItemClickListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectListActivity extends AppCompatActivity {
@@ -36,9 +35,6 @@ public class ProjectListActivity extends AppCompatActivity {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    private List<Project> projects;
-    private List<List<Image>> listOfImages;
-    private List<List<Skill>> listOfSkills;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,42 +43,34 @@ public class ProjectListActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle(R.string.loading_content);
+        progressDialog.setCancelable(false);
         progressDialog.show();
 
         context = getApplicationContext();
 
-        recyclerView = (RecyclerView) findViewById(R.id.projectsRecyclerView);
-
-
-        projects = new ArrayList<>();
-        listOfImages = new ArrayList<>();
-        listOfSkills = new ArrayList<>();
-
-        adapter = new ProjectListAdapter(this, projects, listOfImages, listOfSkills);
-
-        layoutManager = new LinearLayoutManager(this);
-
-        recyclerView.setLayoutManager(layoutManager);
-
-        recyclerView.setAdapter(adapter);
-
-        adapter.notifyDataSetChanged();
 
         DataManager.getInstance().getAllProjects(new DataManager.ProjectsCallback() {
             @Override
-            public void doneProjects(List<Project> projectList, List<List<Image>> images, List<List<Skill>> skills) {
-                projects.addAll(projectList);
-                listOfImages.addAll(images);
-                listOfSkills.addAll(skills);
+            public void doneProjects(final List<Project> projectList, final List<List<Image>> images, final List<List<Skill>> skills) {
                 Handler mainHandler = new Handler(context.getMainLooper());
                 mainHandler.post(new Runnable() {
                     @Override
                     public void run() {
-                        adapter.notifyDataSetChanged();
+
+                        recyclerView = (RecyclerView) findViewById(R.id.projectsRecyclerView);
+
+                        adapter = new ProjectListAdapter(context, projectList, images, skills);
+
+                        layoutManager = new LinearLayoutManager(context);
+
+                        recyclerView.setAdapter(adapter);
+
+                        recyclerView.setLayoutManager(layoutManager);
+
                         recyclerView.addOnItemTouchListener(
                                 new RecyclerItemClickListener(context, new RecyclerItemClickListener.OnItemClickListener() {
                                     @Override public void onItemClick(View view, int position) {
-                                        Project project = projects.get(position);
+                                        Project project = projectList.get(position);
                                         Bundle bundle = new Bundle();
                                         bundle.putString("projectId", project.getObjectId());
                                         Intent intent = new Intent(ProjectListActivity.this, ProjectDetailsActivity.class);
