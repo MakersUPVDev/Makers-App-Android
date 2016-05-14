@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.makersupv.makers.Models.Image;
 import com.makersupv.makers.Models.Skill;
 import com.makersupv.makers.R;
 
@@ -25,12 +26,14 @@ public class SkillsAdapter extends RecyclerView.Adapter<SkillsAdapter.ViewHolder
     Context context;
     ViewHolder viewHolder;
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder{
         public ImageView skillImage;
+        public ImageView addedImage;
 
         public ViewHolder(View view) {
             super(view);
             skillImage = (ImageView) view.findViewById(R.id.skillImage);
+            addedImage = (ImageView) view.findViewById(R.id.addedImageView);
         }
     }
 

@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
 import com.makersupv.makers.DataManager.DataManager;
+import com.makersupv.makers.Models.Image;
 import com.makersupv.makers.R;
 
 import java.io.IOException;
@@ -28,6 +29,7 @@ public class UploadImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     Context context;
     List<Uri> listOfPathImages;
+    List<Image> listOfImages;
 
     public class Item extends RecyclerView.ViewHolder {
 
@@ -50,9 +52,10 @@ public class UploadImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
     }
 
-    public UploadImagesAdapter(Context context, List<Uri> listOfPathImages) {
+    public UploadImagesAdapter(Context context, List<Uri> listOfPathImages, List<Image> listOfImages) {
         this.context = context;
         this.listOfPathImages = listOfPathImages;
+        this.listOfImages = listOfImages;
     }
 
     @Override
@@ -101,7 +104,7 @@ public class UploadImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                     .asBitmap()
                     .into(item.projectUploadImageView);
             try {
-                DataManager.getInstance().uploadImage(context, item, listOfPathImages.get(position));
+                DataManager.getInstance().uploadImage(context, item, listOfPathImages.get(position), listOfImages);
             } catch (IOException e) {
                 e.printStackTrace();
             }

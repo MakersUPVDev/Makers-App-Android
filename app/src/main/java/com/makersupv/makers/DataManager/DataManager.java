@@ -46,8 +46,8 @@ public class DataManager {
         void doneProject(Project project);
     }
 
-    public interface UploadPhotosCallback{
-        void donePhotos();
+    public interface SkillsCallback{
+        void doneSkills(List<Skill> skills);
     }
 
     public void getAllProjects(final ProjectsCallback callback){
@@ -113,12 +113,13 @@ public class DataManager {
         return parseImages;
     }
 
-    public void uploadImage(Context context, final UploadImagesAdapter.Item item, Uri imageUri) throws IOException {
+    public void uploadImage(Context context, final UploadImagesAdapter.Item item, Uri imageUri, List<Image> listOfImages) throws IOException {
         InputStream iStream =   context.getContentResolver().openInputStream(imageUri);
         byte[] inputData = DataManager.getInstance().getBytes(iStream);
         ParseFile parseFile = new ParseFile(inputData);
         Image image = new Image();
         image.setParseImage(parseFile);
+        listOfImages.add(image);
         image.saveInBackground(new SaveCallback() {
             public void done(ParseException e) {
                 if (e == null) {
@@ -141,6 +142,19 @@ public class DataManager {
             byteBuffer.write(buffer, 0, len);
         }
         return byteBuffer.toByteArray();
+    }
+
+    public void getAllSkills(final SkillsCallback callback){
+        ParseQuery<Skill> query = ParseQuery.getQuery("Skill");
+        query.findInBackground(new FindCallback<Skill>() {
+            @Override
+            public void done(List<Skill> skills, com.parse.ParseException e) {
+                if (e == null)
+                    callback.doneSkills(skills);
+                else
+                    Log.d("Error", e.getMessage());
+            }
+        });
     }
 
 }

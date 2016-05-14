@@ -12,6 +12,7 @@ import com.parse.ParseObject;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 @ParseClassName("Project")
 public class Project extends ParseObject implements Serializable {
@@ -64,8 +65,12 @@ public class Project extends ParseObject implements Serializable {
         put("members_limit", membersLimit);
     }
 
-    public void setImages(Image[] images) {
-        put("images", Arrays.asList(images));
+    public void setImages(List<Image> images) {
+        put("images", images);
+    }
+
+    public void setSkills(List<Skill> skills) {
+        put("skills", skills);
     }
 
     public String getVideo() {
